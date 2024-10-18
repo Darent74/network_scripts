@@ -1,0 +1,67 @@
+making the script work.
+
+IFor development, i like to run WSL (windows subsystem for linux ) on windows, with a Ubuntu Distro.
+IF you have a Ubuntu desktop/server, even better,  or MacOs  ( how good is apple, i am a convert , ... its basically linux 
+                                                              with a pretty front end )
+                                    
+Anyway onto the setup. The script is going to require an API Key and a ORG_ID entry setup. Place these into your
+.env file. The script will then pull the values from your enviroment, so no need to hard code them into the script.
+
+1. Setup a API key for your organisation.  
+  Login to your meraki portal, find the API section, create and API key,  save the key string.
+2. While still logged into the meraki portal,  open up a new browser and head too 
+             https://api.meraki.com/api/v1/organizations
+
+              From the output, save the key   "id"  , this will be ORD_ID 
+
+create a .env file for your profile
+
+Add the API Key and ORD_ID as values in the .env like
+
+                                     MERAKI_API_KEY="xxxxxxlkjlasjlkajsdkljakldjl"
+                                     ORD_ID="xxxxxxxxxx"
+
+setup your enviroment, if you want to make a little shell script to execute and initalise
+setup.sh script below
+                                     
+   #!/bin/sh
+   set -a
+   source ~/env/.env
+   set -a
+   env
+
+
+##############################################
+USAGE : python get_meraki_devs.py --help
+
+usage: get_meraki_devs.py [-h] [--network NETWORK] [--serials SERIALS] [--all] [--csv CSV] [--clients]
+
+Extract Meraki device details.
+
+options:
+  -h, --help         show this help message and exit
+  --network NETWORK  Select the network (by number from the list).
+  --serials SERIALS  Comma-separated list of device serials to extract.
+  --all              Extract all devices in the selected network.
+  --csv CSV          Path to output the results to a CSV file.
+  --clients          Extract Clients.
+
+  example : 
+Get the networks for your organisation
+    python get_meraki_devs.py 
+
+Get all clients on the network number 2
+    python get_meraki_devs.py --network 2 --clients
+
+Get all devices for the network number 2 ( make sure you specify --all )
+    python get_meraki_devs.py --network 2 --devices --all
+
+Get a meraki device info simply supplying the serial number
+    python get_meraki_devs.py --serial xxx-xxxx-xxx 
+ - supply multiple serials with a comma seration   eg.  xxx-xxx-xxx,xxx-xxx-xx,......                               
+                                     
+Optional : you can output to a CSV files with  --csv csvfilename.csv
+
+                                  
+
+                                     

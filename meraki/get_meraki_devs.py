@@ -1,4 +1,3 @@
-# from fileinput import input
 import meraki
 import csv
 import os

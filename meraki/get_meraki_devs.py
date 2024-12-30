@@ -6,7 +6,7 @@ from icecream import ic
 from rich import print
 # import pprint
 from tabulate import tabulate
-################################################################################################
+#################################################################################################
 ##### Variables / Lists / Contstants
 CLIENT_KEYS = ['site','mac','description','ip', 'recentDeviceName','switchport','status','manufacturer','id','notes','usage']
 DEVICE_KEYS = ['site','name', 'serial', 'mac', 'lanIp', 'model','firmware','notes']
